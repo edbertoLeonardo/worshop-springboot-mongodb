@@ -56,9 +56,8 @@ public class UserResource {
 	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id){
 		User user = userService.fromDTO(objDto);
 		user.setId(id);
-		user = userService.insert(user);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		user = userService.update(user);
+		return ResponseEntity.noContent().build();
 	}
 	
 }
